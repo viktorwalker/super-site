@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BLAST.TV 2025 NADES & PRO TIPS</title>
+  <title>BLAST. CS 2 NADES AND PRO PLAYER TIPS.</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Уведомление о cookies -->
+   <!-- Уведомление о cookies -->
   <div id="overlay" class="overlay">
     <div class="overlay-card">
       <h2 class="overlay-title">Мы используем cookies</h2>
@@ -20,12 +20,12 @@
         <button id="accept-button" class="btn btn-primary">Принять</button>
         <button id="decline-button" class="btn btn-outline">Отклонить</button>
       </div>
-      <a href="https://parad1st.github.io/" target="_blank" class="overlay-link">Подробнее в пользовательском соглашении</a>
     </div>
   </div>
 
-  <!-- Скрытый блок со звуком -->
+  <!-- Контент: звук + гифка -->
   <div id="content" class="content" hidden>
+    <img src="source/be53fc5350400539c44b3bc7c2552fe9.gif" alt="gif" style="max-width: 100%; height: auto;" />
     <audio id="audio" src="source/sounds.mp3"></audio>
   </div>
 
@@ -37,23 +37,24 @@
     const acceptButton = document.getElementById("accept-button");
     const audio = document.getElementById("audio");
 
-    let hasClicked;
-
-    window.onbeforeunload = function () {
-      if (hasClicked) return true;
-    };
+    let hasEntered = false;
 
     function buttonClick(event) {
       event.preventDefault();
-      if (!hasClicked) hasClicked = true;
+      if (!hasEntered) hasEntered = true;
 
       overlay.hidden = true;
       content.hidden = false;
 
       // Воспроизведение звука
       audio.play().catch((e) => {
-        console.log("Автовоспроизведение заблокировано, нажмите где-нибудь на экран");
+        console.log("Автовоспроизведение заблокировано, нажмите на экран.");
       });
+
+      // Включить предупреждение при попытке закрыть страницу
+      window.onbeforeunload = function () {
+        return "Вы точно хотите выйти?";
+      };
     }
 
     acceptButton.addEventListener("click", buttonClick);
