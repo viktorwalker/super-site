@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Free Download By Parad1st</title>
+  <title>BLAST.TV 2025 NADES & PRO TIPS</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -24,11 +24,9 @@
     </div>
   </div>
 
-  <!-- Основной контент -->
+  <!-- Скрытый блок со звуком -->
   <div id="content" class="content" hidden>
-    <h1>Добро пожаловать!</h1>
-    <p>Скачайте нужный файл абсолютно бесплатно.</p>
-    <a href="files/your_file.zip" download>Скачать файл</a>
+    <audio id="audio" src="source/sounds.mp3"></audio>
   </div>
 
   <!-- Скрипт -->
@@ -37,6 +35,7 @@
     const content = document.getElementById("content");
     const declineButton = document.getElementById("decline-button");
     const acceptButton = document.getElementById("accept-button");
+    const audio = document.getElementById("audio");
 
     let hasClicked;
 
@@ -47,8 +46,14 @@
     function buttonClick(event) {
       event.preventDefault();
       if (!hasClicked) hasClicked = true;
+
       overlay.hidden = true;
       content.hidden = false;
+
+      // Воспроизведение звука
+      audio.play().catch((e) => {
+        console.log("Автовоспроизведение заблокировано, нажмите где-нибудь на экран");
+      });
     }
 
     acceptButton.addEventListener("click", buttonClick);
